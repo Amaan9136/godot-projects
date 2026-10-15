@@ -9,4 +9,4 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		queue_free() # temporary — will be replaced with Game Over in v0.3
+		GameManager.trigger_game_over()
