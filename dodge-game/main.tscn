@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bqocux7n7gpwn" path="res://enemy/enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://beq7wtk514gox" path="res://spawner/spawner.gd" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://bbqh17g1j0aty" path="res://scripts/systems/restart_listener.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://coc78o3n0hsvj" path="res://hud/hud.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1318333488]
 
@@ -19,3 +20,5 @@ autostart = true
 
 [node name="RestartListener" type="Node" parent="." unique_id=273550248]
 script = ExtResource("3_h2yge")
+
+[node name="HUD" parent="." unique_id=1392056285 instance=ExtResource("5_lquwl")]

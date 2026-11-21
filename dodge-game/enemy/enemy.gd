@@ -2,10 +2,13 @@ extends Area2D
 
 @export var fall_speed: float = 250.0
 
+
 func _physics_process(delta: float) -> void:
 	position.y += fall_speed * delta
 	if position.y > get_viewport_rect().size.y + 50:
+		GameManager.add_score()  # fell off the bottom = dodged
 		queue_free()
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
