@@ -4,7 +4,9 @@ signal game_over
 signal score_changed(new_score: int)
 signal level_changed(new_level: int)
 
-const LEVEL_DURATION: float = 10.0  # seconds per difficulty level
+const LEVEL_DURATION: float = 10.0
+const MENU_SCENE: String = "res://menu/menu.tscn"
+const GAME_SCENE: String = "res://main.tscn"
 
 var is_game_over: bool = false
 var score: int = 0
@@ -20,7 +22,6 @@ func _process(delta: float) -> void:
 	var new_level: int = 1 + int(elapsed / LEVEL_DURATION)
 	if new_level != level:
 		level = new_level
-		print("Level ", level)  # temporary debug output
 		level_changed.emit(level)
 
 
@@ -39,11 +40,24 @@ func trigger_game_over() -> void:
 	game_over.emit()
 
 
-func restart() -> void:
-	# An autoload is NOT recreated when the scene reloads, so we must reset by hand.
+func reset_state() -> void:
 	is_game_over = false
 	score = 0
 	elapsed = 0.0
 	level = 1
 	get_tree().paused = false
+
+
+func restart() -> void:
+	reset_state()
 	get_tree().reload_current_scene()
+
+
+func start_game() -> void:
+	reset_state()
+	get_tree().change_scene_to_file(GAME_SCENE)
+
+
+func go_to_menu() -> void:
+	reset_state()
+	get_tree().change_scene_to_file(MENU_SCENE)
