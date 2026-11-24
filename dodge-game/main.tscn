@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://bds42emdc3nqo"]
+[gd_scene format=3]
 
-[ext_resource type="PackedScene" uid="uid://b0xy5g5aeqfa4" path="res://player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bqocux7n7gpwn" path="res://enemy/enemy.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://beq7wtk514gox" path="res://spawner/spawner.gd" id="2_h2yge"]
-[ext_resource type="Script" uid="uid://bbqh17g1j0aty" path="res://scripts/systems/restart_listener.gd" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://coc78o3n0hsvj" path="res://hud/hud.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" path="res://enemy/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="Script" path="res://spawner/spawner.gd" id="2_h2yge"]
+[ext_resource type="Script" path="res://scripts/systems/restart_listener.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" path="res://hud/hud.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1318333488]
 

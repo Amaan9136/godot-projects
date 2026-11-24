@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*uid://crokqlkc36724"
+GameManager="*res://scripts/systems/game_manager.gd"
 AudioManager="*res://scripts/systems/audio_manager.gd"
 DebugOverlay="*res://scripts/systems/debug_overlay.gd"
 
