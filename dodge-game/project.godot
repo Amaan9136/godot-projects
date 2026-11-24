@@ -12,13 +12,14 @@ config_version=5
 
 config/name="dodge-game"
 run/main_scene="res://menu/menu.tscn"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*uid://crokqlkc36724"
 AudioManager="*res://scripts/systems/audio_manager.gd"
+DebugOverlay="*res://scripts/systems/debug_overlay.gd"
 
 [display]
 
@@ -69,4 +70,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
