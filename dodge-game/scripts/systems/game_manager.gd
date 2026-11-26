@@ -7,11 +7,18 @@ signal level_changed(new_level: int)
 const LEVEL_DURATION: float = 10.0
 const MENU_SCENE: String = "res://menu/menu.tscn"
 const GAME_SCENE: String = "res://main.tscn"
+const SAVE_SECTION: String = "guest"
 
 var is_game_over: bool = false
 var score: int = 0
 var elapsed: float = 0.0
 var level: int = 1
+var best_score: int = 0
+var best_level: int = 1
+
+
+func _ready() -> void:
+	load_best()
 
 
 func _process(delta: float) -> void:
@@ -37,7 +44,15 @@ func trigger_game_over() -> void:
 		return
 	is_game_over = true
 	get_tree().paused = true
+	best_score = maxi(best_score, score)
+	best_level = maxi(best_level, level)
+	LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level})
 	game_over.emit()
+
+
+func load_best() -> void:
+	best_score = LocalStore.read(SAVE_SECTION, "best_score", 0)
+	best_level = LocalStore.read(SAVE_SECTION, "best_level", 1)
 
 
 func reset_state() -> void:
