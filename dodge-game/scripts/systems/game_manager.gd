@@ -16,6 +16,7 @@ var elapsed: float = 0.0
 var level: int = 1
 var best_score: int = 0
 var best_level: int = 1
+var best_time: float = 0.0
 
 
 func _ready() -> void:
@@ -47,16 +48,18 @@ func trigger_game_over() -> void:
 	get_tree().paused = true
 	best_score = maxi(best_score, score)
 	best_level = maxi(best_level, level)
+	best_time = maxf(best_time, elapsed)
 	if Api.user.is_empty():
-		LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level})
+		LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level, "best_time": best_time})
 	else:
-		Api.request(HTTPClient.METHOD_PUT, "/score", {"score": score, "level": level})
+		Api.request(HTTPClient.METHOD_PUT, "/score", {"score": score, "level": level, "time": elapsed})
 	game_over.emit()
 
 
 func load_best() -> void:
 	best_score = LocalStore.read(SAVE_SECTION, "best_score", 0)
 	best_level = LocalStore.read(SAVE_SECTION, "best_level", 1)
+	best_time = LocalStore.read(SAVE_SECTION, "best_time", 0.0)
 
 
 func reset_state() -> void:

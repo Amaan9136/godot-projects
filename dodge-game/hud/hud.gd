@@ -40,7 +40,7 @@ func _on_level_changed(new_level: int) -> void:
 
 
 func _on_game_over() -> void:
-	final_score_label.text = "Score: %d\nTime: %.1f s\nBest: %d\nBest Level: %d" % [GameManager.score, GameManager.elapsed, GameManager.best_score, GameManager.best_level]
+	final_score_label.text = "Score: %d\nTime: %.1f s\nBest: %d\nBest Level: %d\nBest Time: %.1f s" % [GameManager.score, GameManager.elapsed, GameManager.best_score, GameManager.best_level, GameManager.best_time]
 	pause_button.hide()
 	dim.show()
 	game_over_panel.show()

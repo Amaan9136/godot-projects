@@ -26,7 +26,7 @@ const hashPassword = async (password, salt = randomBytes(16).toString("hex")) =>
   `${salt}:${(await scryptAsync(password, salt, 64)).toString("hex")}`;
 const checkPassword = async (password, stored) => same(await hashPassword(password, stored.split(":")[0]), stored);
 const field = (req, key) => String(req.body?.[key] ?? "");
-const publicUser = ({ name, username, bestScore, bestLevel }) => ({ name, username, bestScore, bestLevel });
+const publicUser = ({ name, username, bestScore, bestLevel, bestTime = 0 }) => ({ name, username, bestScore, bestLevel, bestTime });
 const session = (user) => ({ token: sign(user.username), user: publicUser(user) });
 const fail = (res, status, error) => res.status(status).json({ error });
 
@@ -52,7 +52,7 @@ app.post("/api/register", async (req, res) => {
   if (!name || name.length > 30) return fail(res, 400, "Name must be 1-30 characters");
   if (!/^[a-z0-9_]{3,20}$/.test(username)) return fail(res, 400, "Username must be 3-20 letters, numbers or _");
   if (password.length < 6 || password.length > 72) return fail(res, 400, "Password must be 6-72 characters");
-  const user = { name, username, passwordHash: await hashPassword(password), bestScore: 0, bestLevel: 1, createdAt: new Date() };
+  const user = { name, username, passwordHash: await hashPassword(password), bestScore: 0, bestLevel: 1, bestTime: 0, createdAt: new Date() };
   try {
     await users.insertOne(user);
   } catch (error) {
@@ -73,8 +73,9 @@ app.get("/api/me", auth, (req, res) => res.json({ user: publicUser(req.user) }))
 app.put("/api/score", auth, async (req, res) => {
   const score = Math.floor(Number(req.body?.score));
   const level = Math.floor(Number(req.body?.level));
-  if (!Number.isFinite(score) || !Number.isFinite(level) || score < 0 || level < 1) return fail(res, 400, "Invalid score");
-  const user = await users.findOneAndUpdate({ _id: req.user._id }, { $max: { bestScore: score, bestLevel: level } }, { returnDocument: "after" });
+  const time = Number(req.body?.time ?? 0);
+  if (!Number.isFinite(score) || !Number.isFinite(level) || !Number.isFinite(time) || score < 0 || level < 1 || time < 0) return fail(res, 400, "Invalid score");
+  const user = await users.findOneAndUpdate({ _id: req.user._id }, { $max: { bestScore: score, bestLevel: level, bestTime: time } }, { returnDocument: "after" });
   res.json({ user: publicUser(user) });
 });
 

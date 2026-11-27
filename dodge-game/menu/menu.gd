@@ -21,7 +21,7 @@ func _ready() -> void:
 func _refresh() -> void:
 	account_button.texture_normal = LOGIN_ICON if Api.user.is_empty() else LOGOUT_ICON
 	user_label.text = "Player: %s" % Api.user.get("name", "Guest")
-	best_label.text = "Best: %d\nHighest Level: %d" % [GameManager.best_score, GameManager.best_level]
+	best_label.text = "Best: %d\nHighest Level: %d\nBest Time: %.1f s" % [GameManager.best_score, GameManager.best_level, GameManager.best_time]
 
 
 func _on_account_pressed() -> void:
