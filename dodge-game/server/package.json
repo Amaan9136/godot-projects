@@ -1,0 +1,16 @@
+{
+  "name": "dodge-game-server",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "dev": "node --watch --env-file=.env index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^7.6.0"
+  }
+}

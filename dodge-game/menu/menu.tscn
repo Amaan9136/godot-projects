@@ -27,6 +27,11 @@ theme_override_font_sizes/font_size = 120
 text = "DODGE"
 horizontal_alignment = 1
 
+[node name="UserLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(320, 100)
 layout_mode = 2
@@ -45,3 +50,10 @@ theme_override_font_sizes/font_size = 28
 text = "Move: A / D or Left / Right arrows
 Touch: drag your finger"
 horizontal_alignment = 1
+
+[node name="AccountButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Logout"

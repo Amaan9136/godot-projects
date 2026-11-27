@@ -5,6 +5,7 @@ signal score_changed(new_score: int)
 signal level_changed(new_level: int)
 
 const LEVEL_DURATION: float = 10.0
+const AUTH_SCENE: String = "res://auth/auth.tscn"
 const MENU_SCENE: String = "res://menu/menu.tscn"
 const GAME_SCENE: String = "res://main.tscn"
 const SAVE_SECTION: String = "guest"
@@ -46,7 +47,10 @@ func trigger_game_over() -> void:
 	get_tree().paused = true
 	best_score = maxi(best_score, score)
 	best_level = maxi(best_level, level)
-	LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level})
+	if Api.token.is_empty():
+		LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level})
+	else:
+		Api.request(HTTPClient.METHOD_PUT, "/score", {"score": score, "level": level})
 	game_over.emit()
 
 
@@ -76,3 +80,8 @@ func start_game() -> void:
 func go_to_menu() -> void:
 	reset_state()
 	get_tree().change_scene_to_file(MENU_SCENE)
+
+
+func go_to_auth() -> void:
+	reset_state()
+	get_tree().change_scene_to_file(AUTH_SCENE)
