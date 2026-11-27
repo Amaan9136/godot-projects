@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://assets/icons/pause.svg" id="2_pause"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hud")
@@ -83,3 +84,17 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "Menu"
+
+[node name="PauseButton" type="TextureButton" parent="."]
+process_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 84.0
+offset_right = -16.0
+offset_bottom = 164.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_pause")
+ignore_texture_size = true
+stretch_mode = 5

@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+const PAUSE_ICON: Texture2D = preload("res://assets/icons/pause.svg")
+const PLAY_ICON: Texture2D = preload("res://assets/icons/play.svg")
+
 @onready var score_label: Label = $ScoreLabel
 @onready var time_label: Label = $TimeLabel
 @onready var level_label: Label = $LevelLabel
@@ -8,6 +11,7 @@ extends CanvasLayer
 @onready var final_score_label: Label = $GameOverPanel/FinalScoreLabel
 @onready var restart_button: Button = $GameOverPanel/RestartButton
 @onready var menu_button: Button = $GameOverPanel/MenuButton
+@onready var pause_button: TextureButton = $PauseButton
 
 
 func _ready() -> void:
@@ -18,6 +22,7 @@ func _ready() -> void:
 	GameManager.game_over.connect(_on_game_over)
 	restart_button.pressed.connect(GameManager.restart)
 	menu_button.pressed.connect(GameManager.go_to_menu)
+	pause_button.pressed.connect(_on_pause_pressed)
 	_on_score_changed(GameManager.score)
 	_on_level_changed(GameManager.level)
 
@@ -36,6 +41,15 @@ func _on_level_changed(new_level: int) -> void:
 
 func _on_game_over() -> void:
 	final_score_label.text = "Score: %d\nTime: %.1f s\nBest: %d\nBest Level: %d" % [GameManager.score, GameManager.elapsed, GameManager.best_score, GameManager.best_level]
+	pause_button.hide()
 	dim.show()
 	game_over_panel.show()
 	restart_button.grab_focus()
+
+
+
+func _on_pause_pressed() -> void:
+	var paused: bool = not get_tree().paused
+	get_tree().paused = paused
+	dim.visible = paused
+	pause_button.texture_normal = PLAY_ICON if paused else PAUSE_ICON

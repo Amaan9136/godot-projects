@@ -15,7 +15,7 @@ func _ready() -> void:
 	position.y = get_viewport_rect().size.y - bottom_margin
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			touching = true
