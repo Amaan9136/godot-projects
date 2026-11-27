@@ -9,6 +9,7 @@ extends Control
 func _ready() -> void:
 	play_button.pressed.connect(GameManager.start_game)
 	account_button.pressed.connect(Api.logout)
-	user_label.text = "Player: %s" % Api.user.get("name", "")
+	account_button.text = "Login" if Api.token.is_empty() else "Logout"
+	user_label.text = "Player: %s" % Api.user.get("name", "Guest")
 	best_label.text = "Best: %d\nHighest Level: %d" % [GameManager.best_score, GameManager.best_level]
 	play_button.grab_focus()

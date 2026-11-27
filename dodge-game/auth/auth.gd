@@ -6,12 +6,14 @@ extends Control
 @onready var status_label: Label = $VBoxContainer/StatusLabel
 @onready var submit_button: Button = $VBoxContainer/SubmitButton
 @onready var toggle_button: Button = $VBoxContainer/ToggleButton
+@onready var guest_button: Button = $VBoxContainer/GuestButton
 
 var registering: bool = false
 
 
 func _ready() -> void:
 	submit_button.pressed.connect(_on_submit)
+	guest_button.pressed.connect(_on_guest)
 	password_edit.text_submitted.connect(_on_submit.unbind(1))
 	toggle_button.pressed.connect(func() -> void: _set_mode(not registering))
 	_set_mode(false)
@@ -36,3 +38,8 @@ func _on_submit() -> void:
 		return
 	status_label.text = error
 	submit_button.disabled = false
+
+
+func _on_guest() -> void:
+	Api.clear()
+	GameManager.go_to_menu()
