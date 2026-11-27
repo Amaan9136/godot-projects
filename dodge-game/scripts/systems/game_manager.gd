@@ -47,7 +47,7 @@ func trigger_game_over() -> void:
 	get_tree().paused = true
 	best_score = maxi(best_score, score)
 	best_level = maxi(best_level, level)
-	if Api.token.is_empty():
+	if Api.user.is_empty():
 		LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level})
 	else:
 		Api.request(HTTPClient.METHOD_PUT, "/score", {"score": score, "level": level})

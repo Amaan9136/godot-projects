@@ -75,9 +75,9 @@ theme_override_font_sizes/font_size = 28
 text = "New here? Register"
 flat = true
 
-[node name="GuestButton" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(320, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
-text = "Play as Guest"
+text = "Back"

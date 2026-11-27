@@ -35,7 +35,7 @@ func authenticate(path: String, body: Dictionary) -> String:
 
 
 func restore() -> bool:
-	if token.is_empty():
+	if token.is_empty() or not user.is_empty():
 		return false
 	var data := await request(HTTPClient.METHOD_GET, "/me")
 	if data.has("error"):
@@ -53,7 +53,7 @@ func clear() -> void:
 
 func logout() -> void:
 	clear()
-	GameManager.go_to_auth()
+	GameManager.go_to_menu()
 
 
 func _apply(profile: Dictionary) -> void:
