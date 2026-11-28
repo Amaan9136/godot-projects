@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" path="res://assets/icons/log-in.svg" id="2_login"]
 [ext_resource type="Texture2D" path="res://assets/icons/settings.svg" id="3_settings"]
+[ext_resource type="Texture2D" path="res://assets/icons/trophy.svg" id="4_trophy"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -41,13 +42,6 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 56
 text = "Play"
 
-[node name="LeaderboardButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(320, 80)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 36
-text = "Leaderboard"
-
 [node name="BestLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
@@ -85,5 +79,19 @@ offset_right = -112.0
 offset_bottom = 96.0
 grow_horizontal = 0
 texture_normal = ExtResource("3_settings")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LeaderboardButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -288.0
+offset_top = 16.0
+offset_right = -208.0
+offset_bottom = 96.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_trophy")
 ignore_texture_size = true
 stretch_mode = 5

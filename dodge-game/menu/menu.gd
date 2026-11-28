@@ -4,7 +4,7 @@ const LOGIN_ICON: Texture2D = preload("res://assets/icons/log-in.svg")
 const LOGOUT_ICON: Texture2D = preload("res://assets/icons/log-out.svg")
 
 @onready var play_button: Button = $VBoxContainer/PlayButton
-@onready var leaderboard_button: Button = $VBoxContainer/LeaderboardButton
+@onready var leaderboard_button: TextureButton = $LeaderboardButton
 @onready var user_label: Label = $VBoxContainer/UserLabel
 @onready var best_label: Label = $VBoxContainer/BestLabel
 @onready var account_button: TextureButton = $AccountButton
