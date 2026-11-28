@@ -6,6 +6,13 @@ _________________GROUP 2____________________
 
 2. make themes and option for users to change between from settings in the modern card preview format for each (carousal format with next and previous each shows 2 previews in one row and slidable), like cosmic designs and objects (astroid falling as enemy -> spaceship as player), highway / street (opposite cars as enemy -> self car as player), farm theme (eggs falling as enemy -> choose player design yourself. (not decided), also add multiple themes, also keep our current one (red and blue box) as default but with better bg and design)
 
+3. reduce the all the svg icon sizes in menu that are tropies, settings and login/logout.
+
+4. when paused during the game, show the option to quit (thats basically game over, which also does the same what happens after the gameover, like collecting the best values like time/score...etc...) shows it all in the middle. quitting the game takes to menu page.
+
+5. if user escapes the game, and keeps it in the background then automatically pause the game.
+
+6. remove the placeholder of Move A/ D or left or right based instructions and unwanted texts from the page.
 ___________
 
 NEVER CHANGE THE VERSION NUMBER FROM THE export_presets.cfg, UNTIL ITS NEEDED.
