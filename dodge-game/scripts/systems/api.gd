@@ -49,6 +49,7 @@ func clear() -> void:
 	user = {}
 	LocalStore.write("session", {"token": ""})
 	GameManager.load_best()
+	Settings.load_local()
 
 
 func logout() -> void:
@@ -61,3 +62,4 @@ func _apply(profile: Dictionary) -> void:
 	GameManager.best_score = int(profile.bestScore)
 	GameManager.best_level = int(profile.bestLevel)
 	GameManager.best_time = float(profile.bestTime)
+	Settings.apply(profile.get("settings", {}))

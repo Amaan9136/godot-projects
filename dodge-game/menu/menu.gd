@@ -4,14 +4,18 @@ const LOGIN_ICON: Texture2D = preload("res://assets/icons/log-in.svg")
 const LOGOUT_ICON: Texture2D = preload("res://assets/icons/log-out.svg")
 
 @onready var play_button: Button = $VBoxContainer/PlayButton
+@onready var leaderboard_button: Button = $VBoxContainer/LeaderboardButton
 @onready var user_label: Label = $VBoxContainer/UserLabel
 @onready var best_label: Label = $VBoxContainer/BestLabel
 @onready var account_button: TextureButton = $AccountButton
+@onready var settings_button: TextureButton = $SettingsButton
 
 
 func _ready() -> void:
 	play_button.pressed.connect(GameManager.start_game)
 	account_button.pressed.connect(_on_account_pressed)
+	leaderboard_button.pressed.connect(GameManager.go_to_leaderboard)
+	settings_button.pressed.connect(GameManager.go_to_settings)
 	_refresh()
 	play_button.grab_focus()
 	if await Api.restore():

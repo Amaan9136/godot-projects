@@ -1,0 +1,100 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://settings/settings.gd" id="1_settings"]
+[ext_resource type="Texture2D" path="res://assets/icons/music.svg" id="2_music"]
+[ext_resource type="Texture2D" path="res://assets/icons/volume-2.svg" id="3_volume"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="MusicRow" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MusicButton" type="TextureButton" parent="VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("2_music")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="SfxRow" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SfxButton" type="TextureButton" parent="VBoxContainer/SfxRow"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("3_volume")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SfxLabel" type="Label" parent="VBoxContainer/SfxRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Effects"
+
+[node name="SfxSlider" type="HSlider" parent="VBoxContainer/SfxRow"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="FpsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+text = "Show FPS: Off"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Back"

@@ -8,6 +8,8 @@ const LEVEL_DURATION: float = 10.0
 const AUTH_SCENE: String = "res://auth/auth.tscn"
 const MENU_SCENE: String = "res://menu/menu.tscn"
 const GAME_SCENE: String = "res://main.tscn"
+const LEADERBOARD_SCENE: String = "res://leaderboard/leaderboard.tscn"
+const SETTINGS_SCENE: String = "res://settings/settings.tscn"
 const SAVE_SECTION: String = "guest"
 
 var is_game_over: bool = false
@@ -88,3 +90,13 @@ func go_to_menu() -> void:
 func go_to_auth() -> void:
 	reset_state()
 	get_tree().change_scene_to_file(AUTH_SCENE)
+
+
+func go_to_leaderboard() -> void:
+	reset_state()
+	get_tree().change_scene_to_file(LEADERBOARD_SCENE)
+
+
+func go_to_settings() -> void:
+	reset_state()
+	get_tree().change_scene_to_file(SETTINGS_SCENE)

@@ -26,13 +26,14 @@ const hashPassword = async (password, salt = randomBytes(16).toString("hex")) =>
   `${salt}:${(await scryptAsync(password, salt, 64)).toString("hex")}`;
 const checkPassword = async (password, stored) => same(await hashPassword(password, stored.split(":")[0]), stored);
 const field = (req, key) => String(req.body?.[key] ?? "");
-const publicUser = ({ name, username, bestScore, bestLevel, bestTime = 0 }) => ({ name, username, bestScore, bestLevel, bestTime });
+const publicUser = ({ name, username, bestScore, bestLevel, bestTime = 0, settings }) => ({ name, username, bestScore, bestLevel, bestTime, settings });
 const session = (user) => ({ token: sign(user.username), user: publicUser(user) });
 const fail = (res, status, error) => res.status(status).json({ error });
 
 const client = await MongoClient.connect(MONGODB_URI);
 const users = client.db(DB_NAME).collection("users");
 await users.createIndex({ username: 1 }, { unique: true });
+await users.createIndex({ bestTime: -1, bestScore: -1, _id: 1 });
 
 const auth = async (req, res, next) => {
   const username = verify(req.get("authorization")?.replace("Bearer ", ""));
@@ -77,6 +78,23 @@ app.put("/api/score", auth, async (req, res) => {
   if (!Number.isFinite(score) || !Number.isFinite(level) || !Number.isFinite(time) || score < 0 || level < 1 || time < 0) return fail(res, 400, "Invalid score");
   const user = await users.findOneAndUpdate({ _id: req.user._id }, { $max: { bestScore: score, bestLevel: level, bestTime: time } }, { returnDocument: "after" });
   res.json({ user: publicUser(user) });
+});
+
+app.put("/api/settings", auth, async (req, res) => {
+  const { music, sfx, music_muted, sfx_muted, show_fps } = req.body ?? {};
+  const volume = (value) => Number.isFinite(value) && value >= 0 && value <= 1;
+  if (!volume(music) || !volume(sfx) || ![music_muted, sfx_muted, show_fps].every((value) => typeof value === "boolean")) return fail(res, 400, "Invalid settings");
+  const settings = { music, sfx, music_muted, sfx_muted, show_fps };
+  await users.updateOne({ _id: req.user._id }, { $set: { settings } });
+  res.json({ settings });
+});
+
+app.get("/api/leaderboard", async (req, res) => {
+  const me = verify(req.get("authorization")?.replace("Bearer ", ""));
+  const skip = Math.max(0, Math.floor(Number(req.query.skip)) || 0);
+  const limit = Math.min(50, Math.max(1, Math.floor(Number(req.query.limit)) || 50));
+  const players = await users.find({ bestTime: { $gt: 0 } }).sort({ bestTime: -1, bestScore: -1, _id: 1 }).skip(skip).limit(limit).toArray();
+  res.json({ entries: players.map(({ name, username, bestScore, bestTime }) => ({ name, bestScore, bestTime, me: username === me })) });
 });
 
 app.use((error, _req, res, _next) => fail(res, error.status ?? 500, error.expose ? error.message : "Server error"));

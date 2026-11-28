@@ -73,8 +73,10 @@ Set `config/api_url` under `[application]` in `project.godot`:
 |---|---|---|---|
 | POST | `/api/register` | No | Create account (name, username, password) |
 | POST | `/api/login` | No | Log in (username, password) |
-| GET | `/api/me` | Bearer token | Current user and bests |
+| GET | `/api/me` | Bearer token | Current user, bests and settings |
 | PUT | `/api/score` | Bearer token | Save score, level, time (keeps the highest) |
+| PUT | `/api/settings` | Bearer token | Save sound and FPS counter settings |
+| GET | `/api/leaderboard` | Optional | Players ranked by best time, then best score (`skip`, `limit` up to 50) |
 
 ## Build for Android
 
@@ -87,13 +89,15 @@ Set `config/api_url` under `[application]` in `project.godot`:
 ```
 auth/        login and register screen
 menu/        main menu
+leaderboard/ top players by time survived and score
+settings/    sound and FPS counter settings
 hud/         score, level, time, pause button, game over panel
 player/      player scene and movement
 enemy/       falling enemy
 spawner/     enemy spawning and difficulty scaling
 assets/      audio, fonts, icons (Lucide SVGs)
 scripts/
-  systems/   autoloads: GameManager, Api, AudioManager, DebugOverlay
+  systems/   autoloads: Settings, GameManager, Api, AudioManager, DebugOverlay
   utils/     LocalStore (local save file)
 server/      Node + Express + MongoDB backend (ignored by Godot)
 ```
