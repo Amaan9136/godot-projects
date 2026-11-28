@@ -81,10 +81,10 @@ app.put("/api/score", auth, async (req, res) => {
 });
 
 app.put("/api/settings", auth, async (req, res) => {
-  const { music, sfx, music_muted, sfx_muted, show_fps } = req.body ?? {};
+  const { music, sfx, music_muted, sfx_muted, show_fps, theme = "classic" } = req.body ?? {};
   const volume = (value) => Number.isFinite(value) && value >= 0 && value <= 1;
-  if (!volume(music) || !volume(sfx) || ![music_muted, sfx_muted, show_fps].every((value) => typeof value === "boolean")) return fail(res, 400, "Invalid settings");
-  const settings = { music, sfx, music_muted, sfx_muted, show_fps };
+  if (!volume(music) || !volume(sfx) || ![music_muted, sfx_muted, show_fps].every((value) => typeof value === "boolean") || typeof theme !== "string" || !/^[a-z]{1,20}$/.test(theme)) return fail(res, 400, "Invalid settings");
+  const settings = { music, sfx, music_muted, sfx_muted, show_fps, theme };
   await users.updateOne({ _id: req.user._id }, { $set: { settings } });
   res.json({ settings });
 });

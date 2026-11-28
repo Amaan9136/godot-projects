@@ -15,6 +15,11 @@ func _ready() -> void:
 	position.y = get_viewport_rect().size.y - bottom_margin
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED:
+		touching = false
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:

@@ -8,6 +8,9 @@ A portrait 2D arcade game built with Godot 4.7 (GDScript). Move left and right, 
 - Touching an enemy ends the run.
 - The level goes up every 10 seconds. Enemies spawn faster and fall faster with each level.
 - Best score, highest level and best survival time are saved after every run.
+- Pausing shows the run stats with Resume and Quit. Quit saves the run like a game over and returns to the menu.
+- The game pauses automatically when it loses focus or goes to the background.
+- Eight themes (Classic, Cosmic, Highway, Farm, Ocean, Synthwave, Winter, Volcano) can be picked in Settings.
 
 ## Controls
 
@@ -75,7 +78,7 @@ Set `config/api_url` under `[application]` in `project.godot`:
 | POST | `/api/login` | No | Log in (username, password) |
 | GET | `/api/me` | Bearer token | Current user, bests and settings |
 | PUT | `/api/score` | Bearer token | Save score, level, time (keeps the highest) |
-| PUT | `/api/settings` | Bearer token | Save sound and FPS counter settings |
+| PUT | `/api/settings` | Bearer token | Save sound, FPS counter and theme settings |
 | GET | `/api/leaderboard` | Optional | Players ranked by best time, then best score (`skip`, `limit` up to 50) |
 
 ## Build for Android
@@ -91,15 +94,15 @@ auth/        login and register screen
 boot/        loading screen
 menu/        main menu
 leaderboard/ top players by time survived and score
-settings/    sound and FPS counter settings
+settings/    sound, FPS counter and theme settings
 hud/         score, level, time, pause button, game over panel
 player/      player scene and movement
 enemy/       falling enemy
 spawner/     enemy spawning and difficulty scaling
-assets/      audio, fonts, icons (Lucide SVGs)
+assets/      audio, fonts, icons (Lucide SVGs), shaders
 scripts/
-  systems/   autoloads: Settings, GameManager, Api, AudioManager, DebugOverlay
-  utils/     LocalStore (local save file)
+  systems/   autoloads: Settings, Themes, GameManager, Api, AudioManager, Atmosphere, DebugOverlay
+  utils/     LocalStore (local save file), theme art, animated stage, actor visuals
 server/      Node + Express + MongoDB backend (ignored by Godot)
 ```
 

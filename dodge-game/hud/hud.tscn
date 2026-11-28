@@ -11,7 +11,7 @@ offset_left = 16.0
 offset_top = 12.0
 offset_right = 56.0
 offset_bottom = 35.0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 26
 text = "Score: 0"
 
 [node name="LevelLabel" type="Label" parent="."]
@@ -23,7 +23,7 @@ offset_top = 12.0
 offset_right = 40.0
 offset_bottom = 35.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 26
 text = "Level 1"
 
 [node name="TimeLabel" type="Label" parent="."]
@@ -35,7 +35,7 @@ offset_top = 12.0
 offset_right = -16.0
 offset_bottom = 35.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 26
 text = "Time: 0.0"
 
 [node name="Dim" type="ColorRect" parent="."]
@@ -56,44 +56,82 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="GameOverLabel" type="Label" parent="GameOverPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 48
 text = "GAME OVER"
 horizontal_alignment = 1
+theme_type_variation = &"ScreenTitle"
 
 [node name="FinalScoreLabel" type="Label" parent="GameOverPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 24
 text = "Score: 0"
 horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="GameOverPanel"]
-custom_minimum_size = Vector2(320, 90)
+custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "Restart (R)"
+theme_override_font_sizes/font_size = 26
+text = "Restart"
 
 [node name="MenuButton" type="Button" parent="GameOverPanel"]
-custom_minimum_size = Vector2(320, 90)
+custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 26
 text = "Menu"
+
+[node name="PausePanel" type="VBoxContainer" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PausedLabel" type="Label" parent="PausePanel"]
+layout_mode = 2
+theme_type_variation = &"ScreenTitle"
+theme_override_font_sizes/font_size = 48
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="PausePanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PausePanel"]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="PausePanel"]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "Quit"
 
 [node name="PauseButton" type="TextureButton" parent="."]
 process_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -72.0
-offset_top = 84.0
+offset_left = -64.0
+offset_top = 60.0
 offset_right = -16.0
-offset_bottom = 140.0
+offset_bottom = 108.0
 grow_horizontal = 0
 texture_normal = ExtResource("2_pause")
 ignore_texture_size = true

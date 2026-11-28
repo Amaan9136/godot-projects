@@ -23,9 +23,11 @@ config/api_url="http://localhost:3000/api"
 
 LocalStore="*res://scripts/utils/local_store.gd"
 Settings="*res://scripts/systems/settings.gd"
+Themes="*res://scripts/systems/themes.gd"
 GameManager="*res://scripts/systems/game_manager.gd"
 Api="*res://scripts/systems/api.gd"
 AudioManager="*res://scripts/systems/audio_manager.gd"
+Atmosphere="*res://scripts/systems/atmosphere.gd"
 DebugOverlay="*res://scripts/systems/debug_overlay.gd"
 
 [display]

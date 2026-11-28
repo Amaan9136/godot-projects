@@ -40,17 +40,17 @@ func _load_page() -> void:
 
 func _add_row(rank: int, entry: Dictionary) -> void:
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.3, 0.6, 1.0, 0.35) if entry.me else Color(1, 1, 1, 0.07)
-	style.set_corner_radius_all(16)
-	style.set_content_margin_all(16)
+	style.bg_color = Color(Themes.current().accent, 0.45) if entry.me else Color(Themes.PANEL, 0.6)
+	style.set_corner_radius_all(10)
+	style.set_content_margin_all(12)
 	var panel := PanelContainer.new()
 	panel.mouse_filter = Control.MOUSE_FILTER_PASS
 	panel.add_theme_stylebox_override("panel", style)
 	var row := HBoxContainer.new()
-	row.add_child(_cell("%d" % rank, 80.0, MEDALS.get(rank, Color.WHITE), HORIZONTAL_ALIGNMENT_LEFT))
+	row.add_child(_cell("%d" % rank, 60.0, MEDALS.get(rank, Color.WHITE), HORIZONTAL_ALIGNMENT_LEFT))
 	row.add_child(_cell(entry.name, 0.0, Color.WHITE, HORIZONTAL_ALIGNMENT_LEFT))
-	row.add_child(_cell("%.1f s" % entry.bestTime, 150.0, Color.WHITE, HORIZONTAL_ALIGNMENT_RIGHT))
-	row.add_child(_cell("%d" % entry.bestScore, 120.0, Color.WHITE, HORIZONTAL_ALIGNMENT_RIGHT))
+	row.add_child(_cell("%.1f s" % entry.bestTime, 110.0, Color.WHITE, HORIZONTAL_ALIGNMENT_RIGHT))
+	row.add_child(_cell("%d" % entry.bestScore, 90.0, Color.WHITE, HORIZONTAL_ALIGNMENT_RIGHT))
 	panel.add_child(row)
 	rows.add_child(panel)
 
@@ -62,6 +62,6 @@ func _cell(text: String, width: float, color: Color, align: HorizontalAlignment)
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL if width == 0.0 else Control.SIZE_FILL
 	label.horizontal_alignment = align
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	label.add_theme_font_size_override("font_size", 30)
+	label.add_theme_font_size_override("font_size", 24)
 	label.add_theme_color_override("font_color", color)
 	return label

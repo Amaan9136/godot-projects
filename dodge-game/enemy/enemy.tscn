@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_2mvqj"]
+[ext_resource type="Script" path="res://scripts/utils/actor_visual.gd" id="2_visual"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2qs8"]
 size = Vector2(40, 40)
@@ -9,12 +10,9 @@ size = Vector2(40, 40)
 collision_layer = 2
 script = ExtResource("1_2mvqj")
 
-[node name="Visual" type="ColorRect" parent="." unique_id=549284517]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(1, 0, 0, 1)
+[node name="Visual" type="Node2D" parent="." unique_id=549284517]
+script = ExtResource("2_visual")
+is_enemy = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=843930334]
 shape = SubResource("RectangleShape2D_x2qs8")

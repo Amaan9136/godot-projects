@@ -46,6 +46,11 @@ func add_score(amount: int = 1) -> void:
 func trigger_game_over() -> void:
 	if is_game_over:
 		return
+	end_run()
+	game_over.emit()
+
+
+func end_run() -> void:
 	is_game_over = true
 	get_tree().paused = true
 	best_score = maxi(best_score, score)
@@ -55,7 +60,11 @@ func trigger_game_over() -> void:
 		LocalStore.write(SAVE_SECTION, {"best_score": best_score, "best_level": best_level, "best_time": best_time})
 	else:
 		Api.request(HTTPClient.METHOD_PUT, "/score", {"score": score, "level": level, "time": elapsed})
-	game_over.emit()
+
+
+func quit_run() -> void:
+	end_run()
+	go_to_menu()
 
 
 func load_best() -> void:

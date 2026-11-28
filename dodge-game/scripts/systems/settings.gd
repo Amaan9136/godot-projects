@@ -3,7 +3,7 @@ extends Node
 signal changed
 
 const SECTION: String = "settings"
-const DEFAULTS: Dictionary = {"music": 0.8, "music_muted": false, "sfx": 0.8, "sfx_muted": false, "show_fps": false}
+const DEFAULTS: Dictionary = {"music": 0.8, "music_muted": false, "sfx": 0.8, "sfx_muted": false, "show_fps": false, "theme": "classic"}
 
 var values: Dictionary = DEFAULTS.duplicate()
 var dirty: bool = false
