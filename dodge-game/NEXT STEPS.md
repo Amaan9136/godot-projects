@@ -13,6 +13,8 @@ _________________GROUP 2____________________
 5. if user escapes the game, and keeps it in the background then automatically pause the game.
 
 6. remove the placeholder of Move A/ D or left or right based instructions and unwanted texts from the page.
+
+7. keep the buttons/fonts and texts and everythings size too much small but visible. smaller but readable. dont make anything too much big. try to keep all the things small so that it looks more modern.
 ___________
 
 NEVER CHANGE THE VERSION NUMBER FROM THE export_presets.cfg, UNTIL ITS NEEDED.

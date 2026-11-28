@@ -240,9 +240,9 @@ Guidelines:
 | `project.godot` | Project settings (like `package.json` + config) | Yes |
 | `*.tscn` | Scene (text) | Yes |
 | `*.gd` | Script | Yes |
-| `*.gd.uid` | Stable ID for a script (Godot 4.4+) | Yes |
+| `*.gd.uid` | Stable ID for a script (Godot 4.4+) | No |
 | `*.tres` | Saved Resource (text) | Yes |
-| `*.import` | Import settings for an asset | Yes |
+| `*.import` | Import settings for an asset | No |
 | `.godot/` | Editor cache and imported data | **No** |
 | `export_presets.cfg` | Export settings (may contain paths) | Usually yes; keep secrets out |
 | `*.keystore`, `*.jks` | Android signing keys | **Never** |
@@ -911,7 +911,6 @@ docs: update README
 
 - Commit **after each working milestone**, not at the end.
 - Close the Godot editor's unsaved scenes (Ctrl+S) before committing.
-- Commit `.uid` and `.import` files; they keep references stable.
 - Use a branch for risky experiments: `git switch -c experiment/new-menu`.
 - Line endings: a `.gitattributes` with `* text=auto eol=lf` avoids Windows CRLF noise.
 
