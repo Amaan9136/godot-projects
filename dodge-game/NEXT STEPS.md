@@ -10,4 +10,6 @@ ___________
 
 NEVER CHANGE THE VERSION NUMBER FROM THE export_presets.cfg, UNTIL ITS NEEDED.
 
+DO NOT ADD IMPORT OR UID FILES, LET IT GENERATE AUTO, GIVE THE DIRECT REFERENCE.
+
 where also give commit message, and consider the root itself , where the actual update will be in the folder of dodge game, so zip parent will be dodge game folder

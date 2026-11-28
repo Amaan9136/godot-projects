@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://boot/loading.gd" id="1_loading"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="2_icon"]
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_loading")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1255, 0.1608, 0.2549, 1)
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -180.0
+offset_right = 180.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(180, 180)
+texture = ExtResource("2_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Dots" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dot1" type="ColorRect" parent="Dots"]
+layout_mode = 0
+offset_left = -60.0
+offset_right = -36.0
+offset_bottom = 24.0
+color = Color(0.937, 0.325, 0.314, 1)
+
+[node name="Dot2" type="ColorRect" parent="Dots"]
+layout_mode = 0
+offset_left = -12.0
+offset_right = 12.0
+offset_bottom = 24.0
+color = Color(0.961, 0.62, 0.043, 1)
+
+[node name="Dot3" type="ColorRect" parent="Dots"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 60.0
+offset_bottom = 24.0
+color = Color(0.22, 0.741, 0.973, 1)

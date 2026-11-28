@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="dodge-game"
-run/main_scene="res://menu/menu.tscn"
+run/main_scene="res://boot/loading.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 config/api_url="http://localhost:3000/api"
+boot_splash/bg_color=Color(0.1255, 0.1608, 0.2549, 1)
+boot_splash/image="res://assets/splash.png"
+boot_splash/fullsize=true
+boot_splash/show_image=false
 
 [autoload]
 

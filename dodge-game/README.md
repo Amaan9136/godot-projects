@@ -88,6 +88,7 @@ Set `config/api_url` under `[application]` in `project.godot`:
 
 ```
 auth/        login and register screen
+boot/        loading screen
 menu/        main menu
 leaderboard/ top players by time survived and score
 settings/    sound and FPS counter settings
